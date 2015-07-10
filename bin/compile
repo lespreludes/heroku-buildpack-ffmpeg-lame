@@ -4,11 +4,11 @@ indent() {
   sed -u 's/^/       /'
 }
 
-echo "-----> Install ffmpeg"
+echo "-----> Install ffmpeg and lame"
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
-DOWNLOAD_URL="http://flect.github.io/heroku-binaries/libs/ffmpeg.tar.gz"
 LAME_DIR=$(pwd)/lame
+FFMPEG_DIR=$(pwd)/ffmpeg
 
 echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
@@ -16,8 +16,8 @@ cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 
-# download ffmpeg to vendor dir
-curl -L --silent $DOWNLOAD_URL | tar xz
+# copy ffmpeg to vendor dir
+cp -r $FFMPEG_DIR .
 # copy lame to vendor dir
 cp -r $LAME_DIR .
 
